@@ -16,7 +16,7 @@ export default function Students() {
       await dispatch(studentListRequest());
     }
     loadStudents();
-  }, []);
+  }, [dispatch]);
 
   const students = useSelector(state => state.students.list);
 
@@ -48,7 +48,8 @@ export default function Students() {
                 <td>{student.age}</td>
                 <td>
                   <div>
-                    <Link to={`/students/${student.id}`}>editar</Link>
+                    <Link to={`/edit-student/${student.id}`}>editar</Link>
+
                     <button type="button" id="delete">
                       apagar
                     </button>

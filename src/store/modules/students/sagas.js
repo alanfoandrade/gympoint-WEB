@@ -18,4 +18,28 @@ export function* getList({ payload }) {
   }
 }
 
-export default all([takeLatest(actionTypes.STUDENT_LIST_REQUEST, getList)]);
+export function* updateStudent({ payload }) {
+  try {
+    const { data } = payload;
+    yield api.put('students', data);
+    toast.success('Usuário atualizado');
+  } catch (err) {
+    toast.error('Houve um problema ao tentar atualizar este usuário');
+  }
+}
+
+export function* createStudent({ payload }) {
+  try {
+    const { data } = payload;
+    yield api.post('students', data);
+    toast.success('Usuário criado');
+  } catch (err) {
+    toast.error('Houve um problema criando este usuário');
+  }
+}
+
+export default all([
+  takeLatest(actionTypes.STUDENT_LIST_REQUEST, getList),
+  takeLatest(actionTypes.STUDENT_CREATE_REQUEST, createStudent),
+  takeLatest(actionTypes.STUDENT_UPDATE_REQUEST, updateStudent),
+]);

@@ -22,6 +22,34 @@ export default function students(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case actionTypes.STUDENT_UPDATE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      /*
+      case actionTypes.STUDENT_UPDATE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.STUDENT_UPDATE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
+      */
+      case actionTypes.STUDENT_CREATE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      /*
+      case actionTypes.STUDENT_CREATE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.STUDENT_CREATE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
+      */
       default:
     }
   });

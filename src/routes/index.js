@@ -10,21 +10,13 @@ import Enrollments from '~/pages/Enrollments';
 
 import StudentForm from '~/components/StudentForm';
 
-const student = {
-  name: 'arthur',
-  email: 'arthurdsb_@hotmail.com',
-};
-
 export default function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={Login} />
-      <Route
-        path="/create-student"
-        component={() => <StudentForm student={student} />}
-        isPrivate
-      />
       <Route path="/students" component={Students} isPrivate />
+      <Route path="/create-student" component={StudentForm} isPrivate />
+      <Route exact path="/edit-student/:id" component={StudentForm} isPrivate />
       <Route path="/enrollments" component={Enrollments} isPrivate />
       <Route path="/plans" component={Plans} isPrivate />
       <Route path="/help" component={Help} isPrivate />
