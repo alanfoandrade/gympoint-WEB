@@ -21,7 +21,7 @@ export function* getList({ payload }) {
 export function* updateStudent({ payload }) {
   try {
     const { data } = payload;
-    yield api.put('students', data);
+    yield call(api.put, 'students', data);
     toast.success('Usuário atualizado');
   } catch (err) {
     toast.error('Houve um problema ao tentar atualizar este usuário');
@@ -31,7 +31,7 @@ export function* updateStudent({ payload }) {
 export function* createStudent({ payload }) {
   try {
     const { data } = payload;
-    yield api.post('students', data);
+    yield call(api.post, 'students', data);
     toast.success('Usuário criado');
   } catch (err) {
     toast.error('Houve um problema criando este usuário');

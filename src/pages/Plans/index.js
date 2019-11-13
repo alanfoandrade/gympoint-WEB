@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 
@@ -6,24 +7,24 @@ import { Container } from '~/components/Container/styles';
 import { Table } from '~/components/Table/styles';
 import { PageHeader } from '~/components/PageHeader/styles';
 
-import api from '~/services/api';
+import { planListRequest } from '~/store/modules/plans/actions';
 
 export default function Plans() {
-  const [plans, setPlans] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function loadPlans() {
-      const response = await api.get('plans');
-
-      setPlans(response.data);
+      await dispatch(planListRequest());
     }
     loadPlans();
-  }, []);
+  }, [dispatch]);
+
+  const plans = useSelector(state => state.plans.list);
   return (
     <>
       <PageHeader>
         <strong>Gerenciamento de planos</strong>
         <aside>
-          <Link to="/register-student">
+          <Link to="/create-plan">
             <MdAdd size={20} />
             CADASTRAR
           </Link>
@@ -50,7 +51,7 @@ export default function Plans() {
                 <td>R${plan.price},00</td>
                 <td>
                   <div>
-                    <Link to={`/students/${plan.id}`}>editar</Link>
+                    <Link to={`/edit-plan/${plan.id}`}>editar</Link>
                     <button type="button" id="delete">
                       apagar
                     </button>

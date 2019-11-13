@@ -55,15 +55,20 @@ export default function StudentForm({ match }) {
     <Container>
       <FormContainer>
         <PageHeader>
-          <strong>Cadastro de alunos</strong>
+          <strong>{id ? 'Edição de aluno' : 'Cadastro de aluno'}</strong>
           <aside>
             <Link to="/students">VOLTAR</Link>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" form="StudentForm" value="Submit">
               SALVAR
             </button>
           </aside>
         </PageHeader>
-        <Form schema={schema} initialData={student} onSubmit={handleSubmit}>
+        <Form
+          schema={schema}
+          initialData={student}
+          onSubmit={handleSubmit}
+          id="StudentForm"
+        >
           <label htmlFor="name">
             <p>NOME COMPLETO</p>
             <Input name="name" id="name" placeholder="Fulano" />
@@ -95,7 +100,6 @@ export default function StudentForm({ match }) {
               <Input type="number" step=".001" name="height" id="height" />
             </label>
           </div>
-          <button type="submit">ENVIAR (PRECISO MUDAR ESSE BOTAO)</button>
         </Form>
       </FormContainer>
     </Container>

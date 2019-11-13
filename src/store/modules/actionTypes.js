@@ -14,3 +14,10 @@ export const STUDENT_UPDATE_FAILURE = '@student/UPDATE_FAILURE';
 export const STUDENT_CREATE_REQUEST = '@student/CREATE_REQUEST';
 export const STUDENT_CREATE_SUCCESS = '@student/CREATE_SUCCESS';
 export const STUDENT_CREATE_FAILURE = '@student/CREATE_FAILURE';
+
+export const PLAN_LIST_REQUEST = '@plan/GET_LIST_REQUEST';
+export const PLAN_LIST_SUCCESS = '@plan/GET_LIST_SUCCESS';
+export const PLAN_LIST_FAILURE = '@plan/GET_LIST_FAILURE';
+export const PLAN_CREATE_REQUEST = '@plan/CREATE_REQUEST';
+export const PLAN_CREATE_SUCCESS = '@plan/CREATE_SUCCESS';
+export const PLAN_CREATE_FAILURE = '@plan/CREATE_FAILURE';
