@@ -21,3 +21,6 @@ export const PLAN_LIST_FAILURE = '@plan/GET_LIST_FAILURE';
 export const PLAN_CREATE_REQUEST = '@plan/CREATE_REQUEST';
 export const PLAN_CREATE_SUCCESS = '@plan/CREATE_SUCCESS';
 export const PLAN_CREATE_FAILURE = '@plan/CREATE_FAILURE';
+export const PLAN_UPDATE_REQUEST = '@plan/UPDATE_REQUEST';
+export const PLAN_UPDATE_SUCCESS = '@plan/UPDATE_SUCCESS';
+export const PLAN_UPDATE_FAILURE = '@plan/UPDATE_FAILURE';

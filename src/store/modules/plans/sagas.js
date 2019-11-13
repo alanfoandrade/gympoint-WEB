@@ -1,11 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import {
-  planListSuccess,
-  planListFailure,
-  planCreateSuccess,
-  planCreateFailure,
-} from './actions';
+import { planListSuccess, planListFailure } from './actions';
 import * as actionTypes from '~/store/modules/actionTypes';
 import api from '~/services/api';
 
@@ -24,11 +19,27 @@ export function* createPlan({ payload }) {
     const { plan } = payload;
     yield call(api.post, 'plans', plan);
     toast.success('Plano criado com sucesso');
-    yield put(planCreateSuccess);
   } catch (err) {
     toast.error('Ocorreu um erro na criação deste plano');
-    yield put(planCreateFailure);
   }
 }
 
-export default all([takeLatest(actionTypes.PLAN_LIST_REQUEST, getList)]);
+export function* updatePlan({ payload }) {
+  try {
+    const { title, duration, price, id } = payload.data;
+    yield call(api.put, `plans/${id}`, {
+      title,
+      duration,
+      price,
+    });
+    toast.success('Plano atualizado');
+  } catch (err) {
+    toast.error('Houve um problema ao tentar atualizar este plano');
+  }
+}
+
+export default all([
+  takeLatest(actionTypes.PLAN_LIST_REQUEST, getList),
+  takeLatest(actionTypes.PLAN_CREATE_REQUEST, createPlan),
+  takeLatest(actionTypes.PLAN_UPDATE_REQUEST, updatePlan),
+]);

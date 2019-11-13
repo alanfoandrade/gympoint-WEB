@@ -34,6 +34,18 @@ export default function plans(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case actionTypes.PLAN_UPDATE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case actionTypes.PLAN_UPDATE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.PLAN_UPDATE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

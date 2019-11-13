@@ -9,23 +9,20 @@ import { Container } from '~/components/Container/styles';
 import { PageHeader } from '~/components/PageHeader/styles';
 import { FormContainer } from './styles';
 
-import { planCreateRequest } from '~/store/modules/plans/actions';
+import {
+  planCreateRequest,
+  planUpdateRequest,
+} from '~/store/modules/plans/actions';
 import api from '~/services/api';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('O nome é obrigatório'),
-  email: Yup.string()
-    .email('Informe um e-mail válido')
-    .required('O e-mail é obrigatório'),
-  age: Yup.number()
-    .positive('Idade inválida')
-    .required('A idade é obrigatória'),
-  weight: Yup.number()
-    .positive('Peso inválido')
-    .required('O peso é obrigatório'),
-  height: Yup.number()
-    .positive('Altura inválida')
-    .required('A altura é obrigatória'),
+  title: Yup.string().required('O título é necessário'),
+  duration: Yup.number()
+    .required('A duração é obrigatória')
+    .positive('Não é possível inserir números negativos para tempo'),
+  price: Yup.number()
+    .required('O preço é obrigatório')
+    .positive('Não é possível inserir números negativos no preço'),
 });
 
 export default function PlanForm({ match }) {
@@ -46,20 +43,30 @@ export default function PlanForm({ match }) {
     if (id) {
       getPlan();
     }
-  }, []);
+  }, [id]);
 
-  const total = useMemo(() => (duration * price).toFixed(2), [
-    duration,
-    price,
-    id,
-  ]);
+  const total = useMemo(() => (duration * price).toFixed(2), [duration, price]);
 
-  function handleSubmit(plan) {
+  function handleSubmit() {
     if (id) {
-      console.tron.log(id);
+      console.tron.log(title, duration, price);
+      dispatch(
+        planUpdateRequest({
+          id,
+          title,
+          duration,
+          price,
+        })
+      );
     } else {
-      console.tron.log(plan);
-      // dispatch(planCreateRequest(plan));
+      console.tron.log(title, duration, price);
+      dispatch(
+        planCreateRequest({
+          title,
+          duration,
+          price,
+        })
+      );
     }
   }
 
@@ -75,7 +82,7 @@ export default function PlanForm({ match }) {
             </button>
           </aside>
         </PageHeader>
-        <Form id="planForm" onSubmit={handleSubmit}>
+        <Form id="planForm" schema={schema} onSubmit={handleSubmit}>
           <label htmlFor="title">
             <p>TÍTULO DO PLANO</p>
             <Input
@@ -83,8 +90,45 @@ export default function PlanForm({ match }) {
               name="title"
               id="title"
               placeholder="Exemplo: gold"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
           </label>
+          <div>
+            <label htmlFor="duration">
+              <p>DURAÇÃO (em meses)</p>
+              <Input
+                type="number"
+                name="duration"
+                id="duration"
+                placeholder="Exemplo: 2"
+                value={duration}
+                onChange={e => setDuration(e.target.value)}
+              />
+            </label>
+            <label htmlFor="price">
+              <p>PREÇO MENSAL (em R$)</p>
+              <Input
+                type="number"
+                step=".01"
+                name="price"
+                id="price"
+                placeholder="Exemplo: 30.00"
+                value={price}
+                onChange={e => setPrice(e.target.value)}
+              />
+            </label>
+            <label htmlFor="total">
+              <p>PREÇO TOTAL (em R$)</p>
+              <Input
+                disabled
+                type="number"
+                name="total"
+                id="total"
+                value={total}
+              />
+            </label>
+          </div>
         </Form>
       </FormContainer>
     </Container>

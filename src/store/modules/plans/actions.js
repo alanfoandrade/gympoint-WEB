@@ -37,3 +37,22 @@ export function planCreateFailure() {
     type: actionTypes.PLAN_CREATE_FAILURE,
   };
 }
+
+export function planUpdateRequest(data) {
+  return {
+    type: actionTypes.PLAN_UPDATE_REQUEST,
+    payload: { data },
+  };
+}
+
+export function planUpdateSuccess() {
+  return {
+    type: actionTypes.PLAN_UPDATE_SUCCESS,
+  };
+}
+
+export function planUpdateFailure() {
+  return {
+    type: actionTypes.PLAN_UPDATE_FAILURE,
+  };
+}
