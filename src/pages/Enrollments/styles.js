@@ -1,43 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  max-width: 1200px;
-  border: 4px;
-  margin: 30px auto 0;
-`;
-
-export const PageHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-
-  strong {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  aside {
-    display: flex;
-    align-items: center;
-
-    a {
-      background: #de3b3b;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 10px 16px;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      margin-right: 16px;
-
-      svg {
-        margin-right: 16px;
-      }
-    }
-  }
-`;
-
 export const Table = styled.table`
   width: 100%;
   max-width: 1380px;

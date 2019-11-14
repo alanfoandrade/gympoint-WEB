@@ -19,6 +19,7 @@ export default function Students() {
   }, [dispatch]);
 
   const students = useSelector(state => state.students.list);
+  console.tron.log(students);
 
   return (
     <>

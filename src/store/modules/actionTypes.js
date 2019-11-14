@@ -1,9 +1,16 @@
-export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
+/*
+  AUTH RELATED ACTION TYPES BELOW
+*/
 
+export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
 export const AUTH_LOGIN_REQUEST = '@auth/LOGIN_REQUEST';
 export const AUTH_LOGIN_SUCCESS = '@auth/LOGIN_SUCCESS';
 export const AUTH_LOGIN_FAILURE = '@auth/LOGIN_FAILURE';
 export const AUTH_LOGOUT = '@auth/LOGOUT';
+
+/*
+  STUDENT RELATED ACTION TYPES BELOW
+*/
 
 export const STUDENT_LIST_REQUEST = '@student/GET_LIST_REQUEST';
 export const STUDENT_LIST_SUCCESS = '@student/GET_LIST_SUCCESS';
@@ -14,6 +21,9 @@ export const STUDENT_UPDATE_FAILURE = '@student/UPDATE_FAILURE';
 export const STUDENT_CREATE_REQUEST = '@student/CREATE_REQUEST';
 export const STUDENT_CREATE_SUCCESS = '@student/CREATE_SUCCESS';
 export const STUDENT_CREATE_FAILURE = '@student/CREATE_FAILURE';
+/*
+  PLAN RELATED ACTION TYPES BELOW
+*/
 
 export const PLAN_LIST_REQUEST = '@plan/GET_LIST_REQUEST';
 export const PLAN_LIST_SUCCESS = '@plan/GET_LIST_SUCCESS';
@@ -24,3 +34,17 @@ export const PLAN_CREATE_FAILURE = '@plan/CREATE_FAILURE';
 export const PLAN_UPDATE_REQUEST = '@plan/UPDATE_REQUEST';
 export const PLAN_UPDATE_SUCCESS = '@plan/UPDATE_SUCCESS';
 export const PLAN_UPDATE_FAILURE = '@plan/UPDATE_FAILURE';
+
+/*
+  ENROLLMENT RELATED ACTION TYPES BELOW
+*/
+
+export const ENROLLMENT_LIST_REQUEST = '@enrollment/LIST_REQUEST';
+export const ENROLLMENT_LIST_SUCCESS = '@enrollment/LIST_SUCCESS';
+export const ENROLLMENT_LIST_FAILURE = '@enrollment/LIST_FAILURE';
+export const ENROLLMENT_CREATE_REQUEST = '@enrollment/CREATE_REQUEST';
+export const ENROLLMENT_CREATE_SUCCESS = '@enrollment/CREATE_SUCCESS';
+export const ENROLLMENT_CREATE_FAILURE = '@enrollment/CREATE_FAILURE';
+export const ENROLLMENT_UPDATE_REQUEST = '@enrollment/UPDATE_REQUEST';
+export const ENROLLMENT_UPDATE_SUCCESS = '@enrollment/UPDATE_SUCCESS';
+export const ENROLLMENT_UPDATE_FAILURE = '@enrollment/UPDATE_FAILURE';

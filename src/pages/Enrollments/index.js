@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
-
-/*
-import { Container } from '~/components/Container/styles';
-import { Table } from '~/components/Table/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { Table } from './styles';
 import { PageHeader } from '~/components/PageHeader/styles';
-*/
-import { Container, Table, PageHeader } from './styles';
+import { Container } from '~/components/Container/styles';
 
+import { enrollmentListRequest } from '~/store/modules/enrollments/actions';
 // import api from '~/services/api';
 
 export default function Enrollments() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function loadEnrollments() {
+      await dispatch(enrollmentListRequest());
+    }
+    loadEnrollments();
+  }, [dispatch]);
+
+  const enrollments = useSelector(state => state.enrollments.list);
+  console.tron.log(enrollments);
   return (
     <>
       <PageHeader>
@@ -35,19 +43,23 @@ export default function Enrollments() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>plano gold</td>
-              <td>preço</td>
-              <td>duraçao</td>
-              <td>
-                <div>
-                  <Link to="/students/">editar</Link>
-                  <button type="button" id="delete">
-                    apagar
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {enrollments.map(enrollment => (
+              <tr key={enrollment.id}>
+                <td>{enrollment.student_id}</td>
+                <td>{enrollment.plan_id}</td>
+                <td>{enrollment.start_date}</td>
+                <td>{enrollment.end_date}</td>
+                <td>{enrollment.active === true ? 'Ativo' : 'Inativo'}</td>
+                <td>
+                  <div>
+                    <Link to="/enrollments">editar</Link>
+                    <button type="button" id="delete">
+                      apagar
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Container>
