@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+} from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +21,7 @@ import { studentListRequest } from '~/store/modules/students/actions';
 
 export default function EnrollmentForm() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     async function loadStudents() {
       await dispatch(studentListRequest());
@@ -81,7 +88,7 @@ export default function EnrollmentForm() {
             defaultOptions
             loadOptions={loadOptions}
             onInputChange={handleInputChange}
-            onChange={e => setStudent(e.target.value)}
+            onChange={handleChange}
           />
         </label>
         <Form id="enrollmentForm" onSubmit={handleSubmit}>
