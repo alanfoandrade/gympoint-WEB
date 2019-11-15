@@ -19,6 +19,7 @@ export default function Enrollments() {
   }, [dispatch]);
 
   const enrollments = useSelector(state => state.enrollments.list);
+
   console.tron.log(enrollments);
   return (
     <>
@@ -45,10 +46,10 @@ export default function Enrollments() {
           <tbody>
             {enrollments.map(enrollment => (
               <tr key={enrollment.id}>
-                <td>{enrollment.student_id}</td>
-                <td>{enrollment.plan_id}</td>
-                <td>{enrollment.start_date}</td>
-                <td>{enrollment.end_date}</td>
+                <td>{enrollment.student.name}</td>
+                <td>{enrollment.plan.title}</td>
+                <td>{enrollment.formatted_start}</td>
+                <td>{enrollment.formatted_end}</td>
                 <td>{enrollment.active === true ? 'Ativo' : 'Inativo'}</td>
                 <td>
                   <div>
