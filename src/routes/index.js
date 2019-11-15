@@ -10,6 +10,7 @@ import Enrollments from '~/pages/Enrollments';
 
 import StudentForm from '~/pages/Students/StudentForm';
 import PlanForm from '~/pages/Plans/PlanForm';
+import EnrollmentForm from '~/pages/Enrollments/EnrollmentForm';
 
 export default function Routes() {
   return (
@@ -22,6 +23,12 @@ export default function Routes() {
       <Route path="/create-plan" component={PlanForm} isPrivate />
       <Route exact path="/edit-plan/:id" component={PlanForm} isPrivate />
       <Route path="/enrollments" component={Enrollments} isPrivate />
+      <Route
+        exact
+        path="/create-enrollment"
+        component={EnrollmentForm}
+        isPrivate
+      />
       <Route path="/help" component={Help} isPrivate />
     </Switch>
   );

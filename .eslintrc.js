@@ -38,7 +38,8 @@ module.exports = {
     'camelcase': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-console': ['error', { allow: ['tron'] }],
-    'jsx-a11y/label-has-associated-control': 'off'
+    'jsx-a11y/label-has-associated-control': 'off',
+    'no-unused-vars': 'off'
   },
   settings: {
     'import/resolver': {
