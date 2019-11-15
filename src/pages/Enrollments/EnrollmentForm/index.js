@@ -1,14 +1,8 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-  useCallback,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, useField } from '@rocketseat/unform';
+import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import AsyncSelect from 'react-select/async';
 
@@ -19,8 +13,9 @@ import { studentListRequest } from '~/store/modules/students/actions';
 
 // import { Container } from './styles';
 
-export default function EnrollmentForm() {
+export default function EnrollmentForm({ match }) {
   const dispatch = useDispatch();
+  const { id } = match;
 
   useEffect(() => {
     async function loadStudents() {
@@ -54,8 +49,11 @@ export default function EnrollmentForm() {
   };
 
   const handleInputChange = newValue => {
-    setInputValue(newValue);
-    return inputValue;
+    setTimeout(() => {
+      const input = newValue.replace(/\W/g, '');
+      setInputValue(input);
+      return inputValue;
+    }, 150);
   };
 
   function handleChange(option) {
@@ -71,7 +69,9 @@ export default function EnrollmentForm() {
     <Container>
       <FormContainer>
         <PageHeader>
-          <strong>CRIAÇÃO DE MATRÍCULAS</strong>
+          <strong>
+            {id ? 'Criação de matrículas' : 'Edição de matrículas'}
+          </strong>
           <aside>
             <Link to="/plans">VOLTAR</Link>
             <button type="submit" form="enrollmentForm" value="Submit">
@@ -83,12 +83,11 @@ export default function EnrollmentForm() {
           <p>ALUNO</p>
           <AsyncSelect
             cacheOptions
-            value={student}
             placeholder="Buscar aluno"
-            defaultOptions
+            defaultOptions={newStudents}
             loadOptions={loadOptions}
             onInputChange={handleInputChange}
-            onChange={handleChange}
+            onChange={option => handleChange(option)}
           />
         </label>
         <Form id="enrollmentForm" onSubmit={handleSubmit}>
@@ -125,3 +124,7 @@ export default function EnrollmentForm() {
     </Container>
   );
 }
+
+EnrollmentForm.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired,
+};

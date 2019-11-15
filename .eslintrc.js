@@ -39,7 +39,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-console': ['error', { allow: ['tron'] }],
     'jsx-a11y/label-has-associated-control': 'off',
-    'no-unused-vars': 'off'
+    'no-shadow': 'off'
   },
   settings: {
     'import/resolver': {
