@@ -26,7 +26,7 @@ export default function Enrollments() {
       <PageHeader>
         <strong>Gerenciamento de matrículas</strong>
         <aside>
-          <Link to="/register-student">
+          <Link to="/create-enrollment">
             <MdAdd size={20} />
             CADASTRAR
           </Link>
