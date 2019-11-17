@@ -38,8 +38,10 @@ export default function StudentForm({ match }) {
 
   useEffect(() => {
     async function getStudent() {
-      const response = await api.get(`students/${parseInt(id, 10)}`);
-      setStudent(response.data);
+      if (id) {
+        const response = await api.get(`students/${parseInt(id, 10)}`);
+        setStudent(response.data);
+      }
     }
     getStudent();
   }, [id]);

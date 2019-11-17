@@ -13,4 +13,19 @@ export function* getList() {
   }
 }
 
-export default all([takeLatest(actionTypes.HELP_ORDER_LIST_REQUEST, getList)]);
+export function* answerOrder({ payload }) {
+  try {
+    const { data } = payload;
+    yield call(api.post, `help-orders/${data.id}/answer`, {
+      answer: data.answer,
+    });
+    toast.success('Pergunta respondida com sucesso!');
+  } catch (err) {
+    toast.error('Ocorreu um erro tentando responder à esta pergunta');
+  }
+}
+
+export default all([
+  takeLatest(actionTypes.HELP_ORDER_LIST_REQUEST, getList),
+  takeLatest(actionTypes.HELP_ORDER_ANSWER_REQUEST, answerOrder),
+]);

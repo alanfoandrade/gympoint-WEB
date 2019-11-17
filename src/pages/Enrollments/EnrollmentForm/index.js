@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import { addMonths, format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import DatePicker from 'react-datepicker';
 // import * as Yup from 'yup';
 import Select from 'react-select';
@@ -46,19 +48,34 @@ export default function EnrollmentForm({ match }) {
     loadData();
   }, [dispatch, id]);
 
-  /*
-  const enrollment = useSelector(state => state.enrollments.list).find(
+  /*    TODO: IF (ID) PUT ENROLLMENT.STUDENT.NAME ASYNCSELECTOR'S DEFAULT VALUE xDDDD
+    const enrollment = useSelector(state => state.enrollments.list).find(
     enrollment => enrollment.id === Number(id)
   );
-  */
-
-  /*    TODO: IF (ID) PUT ENROLLMENT.STUDENT.NAME ASYNCSELECTOR'S DEFAULT VALUE xDDDD 
-        CREATE USEMEMO FOR THE VALUE + DATE ZZZZZZZZZZZZZZ
-  */
+   */
   const defaultStudents = useSelector(state => state.students.list);
   const plans = useSelector(state => state.plans.list);
+
+  const total = useMemo(() => {
+    if (plan) {
+      return (plan.duration * plan.price).toFixed(2);
+    }
+    return 0;
+  }, [plan]);
+
+  const endDate = useMemo(() => {
+    if (plan) {
+      return format(
+        addMonths(startDate, Number(plan.duration)),
+        "d 'de' MMMM 'de' yyyy",
+        { locale: pt }
+      );
+    }
+    return 0;
+  }, [plan, startDate]);
+
   function handlePlanChange(option) {
-    setPlan(option.id);
+    setPlan(option);
   }
 
   function handleSubmit() {
@@ -66,7 +83,7 @@ export default function EnrollmentForm({ match }) {
       dispatch(
         enrollmentCreateRequest({
           student_id: selectedStudent.id,
-          plan_id: plan,
+          plan_id: plan.id,
           start_date: startDate,
         })
       );
@@ -132,13 +149,23 @@ export default function EnrollmentForm({ match }) {
             <div>
               <label htmlFor="end_date">
                 <p>DATA DE TÉRMINO</p>
-                <Input disabled type="date" name="end_date" id="end_date" />
+                <Input
+                  disabled
+                  name="end_date"
+                  id="end_date"
+                  value={endDate || 'Data final'}
+                />
               </label>
             </div>
             <div>
               <label htmlFor="total">
                 <p>PREÇO TOTAL (em R$)</p>
-                <Input disabled type="number" name="total" id="total" />
+                <Input
+                  disabled
+                  name="total"
+                  id="total"
+                  value={total || 'Valor final'}
+                />
               </label>
             </div>
           </GridContainer>

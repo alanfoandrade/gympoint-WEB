@@ -22,6 +22,18 @@ export default function help(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case actionTypes.HELP_ORDER_ANSWER_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case actionTypes.HELP_ORDER_ANSWER_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.HELP_ORDER_ANSWER_FAILURE: {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

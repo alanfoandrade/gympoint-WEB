@@ -1,11 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import {
-  enrollmentListSuccess,
-  enrollmentListFailure,
-  enrollmentCreateSuccess,
-  enrollmentCreateFailure,
-} from './actions';
+import { enrollmentListSuccess, enrollmentListFailure } from './actions';
 import * as actionTypes from '~/store/modules/actionTypes';
 import api from '~/services/api';
 
@@ -24,10 +19,8 @@ export function* createEnrollment({ payload }) {
     const { enrollment } = payload;
     yield call(api.post, 'enrollments', enrollment);
     toast.success('Matrícula criada com sucesso');
-    yield put(enrollmentCreateSuccess);
   } catch (err) {
     toast.error('Ocorreu um erro tentando criar esta matrícula');
-    yield put(enrollmentCreateFailure);
   }
 }
 
