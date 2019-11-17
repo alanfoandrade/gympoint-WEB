@@ -29,6 +29,7 @@ export default function Routes() {
         component={EnrollmentForm}
         isPrivate
       />
+      <Route path="/edit-enrollment/:id" component={EnrollmentForm} isPrivate />
       <Route path="/help" component={Help} isPrivate />
     </Switch>
   );

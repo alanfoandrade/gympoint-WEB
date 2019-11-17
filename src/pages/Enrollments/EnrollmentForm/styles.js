@@ -6,39 +6,39 @@ export const FormContainer = styled.div`
     margin-top: 41px;
     border-radius: 4px;
     padding: 9px 30px 10px;
-    display: flex;
-    flex-direction: column;
-
+    /* display: flex;
+    flex-direction: column; */
     label {
+      font-size: 14px;
       color: #444;
       font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 20px;
-
-      p {
-        margin-bottom: 8px;
-      }
-
-      input {
-        width: 100%;
-        border: 1px solid #ddd;
-        padding: 15px 13px;
-        border-radius: 4px;
-        font-size: 16px;
-
-        &::placeholder {
-          color: #999;
-        }
-      }
+      margin-bottom: 8px;
     }
+    input {
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      width: 100%;
+    }
+  }
+`;
 
-    div {
-      display: flex;
-      justify-content: space-between;
-
-      > label {
-        width: 32%;
-      }
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  margin-top: 15px;
+  div {
+    input {
+      height: 45px;
+      text-indent: 15px;
+    }
+  }
+  div.react-datepicker-wrapper {
+    width: 100%;
+  }
+  > div#plansSelect {
+    input {
+      max-height: 32px;
     }
   }
 `;

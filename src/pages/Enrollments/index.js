@@ -53,7 +53,7 @@ export default function Enrollments() {
                 <td>{enrollment.active === true ? 'Ativo' : 'Inativo'}</td>
                 <td>
                   <div>
-                    <Link to="/enrollments">editar</Link>
+                    <Link to={`/edit-enrollment/${enrollment.id}`}>editar</Link>
                     <button type="button" id="delete">
                       apagar
                     </button>
