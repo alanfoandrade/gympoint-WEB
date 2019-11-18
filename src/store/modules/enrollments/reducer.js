@@ -22,27 +22,39 @@ export default function enrollments(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case actionTypes.PLAN_CREATE_REQUEST: {
+      case actionTypes.ENROLLMENT_CREATE_REQUEST: {
         draft.loading = true;
         break;
       }
-      case actionTypes.PLAN_CREATE_SUCCESS: {
+      case actionTypes.ENROLLMENT_CREATE_SUCCESS: {
         draft.loading = false;
         break;
       }
-      case actionTypes.PLAN_CREATE_FAILURE: {
+      case actionTypes.ENROLLMENT_CREATE_FAILURE: {
         draft.loading = false;
         break;
       }
-      case actionTypes.PLAN_UPDATE_REQUEST: {
+      case actionTypes.ENROLLMENT_UPDATE_REQUEST: {
         draft.loading = true;
         break;
       }
-      case actionTypes.PLAN_UPDATE_SUCCESS: {
+      case actionTypes.ENROLLMENT_UPDATE_SUCCESS: {
         draft.loading = false;
         break;
       }
-      case actionTypes.PLAN_UPDATE_FAILURE: {
+      case actionTypes.ENROLLMENT_UPDATE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.ENROLLMENT_DELETE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case actionTypes.ENROLLMENT_DELETE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.ENROLLMENT_DELETE_FAILURE: {
         draft.loading = false;
         break;
       }

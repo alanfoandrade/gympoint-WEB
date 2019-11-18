@@ -6,8 +6,12 @@ import { Table } from './styles';
 import { PageHeader } from '~/components/PageHeader/styles';
 import { Container } from '~/components/Container/styles';
 
-import { enrollmentListRequest } from '~/store/modules/enrollments/actions';
+import {
+  enrollmentListRequest,
+  enrollmentDeleteRequest,
+} from '~/store/modules/enrollments/actions';
 // import api from '~/services/api';
+import deleteAlert from '~/util/deleteAlert';
 
 export default function Enrollments() {
   const dispatch = useDispatch();
@@ -20,7 +24,14 @@ export default function Enrollments() {
 
   const enrollments = useSelector(state => state.enrollments.list);
 
-  console.tron.log(enrollments);
+  function handleDelete(id) {
+    deleteAlert.delete().then(result => {
+      if (result.value) {
+        dispatch(enrollmentDeleteRequest(id));
+      }
+    });
+  }
+
   return (
     <>
       <PageHeader>
@@ -46,7 +57,11 @@ export default function Enrollments() {
           <tbody>
             {enrollments.map(enrollment => (
               <tr key={enrollment.id}>
-                <td>{enrollment.student.name}</td>
+                <td>
+                  {enrollment.student
+                    ? enrollment.student.name
+                    : 'Usuário não existe mais'}
+                </td>
                 <td>{enrollment.plan.title}</td>
                 <td>{enrollment.formatted_start}</td>
                 <td>{enrollment.formatted_end}</td>
@@ -54,7 +69,11 @@ export default function Enrollments() {
                 <td>
                   <div>
                     <Link to={`/edit-enrollment/${enrollment.id}`}>editar</Link>
-                    <button type="button" id="delete">
+                    <button
+                      type="button"
+                      id="delete"
+                      onClick={() => handleDelete(enrollment.id)}
+                    >
                       apagar
                     </button>
                   </div>

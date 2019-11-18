@@ -24,7 +24,18 @@ export function* createEnrollment({ payload }) {
   }
 }
 
+export function* deleteEnrollment({ payload }) {
+  try {
+    const { id } = payload;
+    yield call(api.delete, `enrollments/${id}`);
+    toast.success(`Matrícula ${id} deletada com sucesso`);
+  } catch (err) {
+    toast.error('Ocorreu um erro deletando esta matrícula');
+  }
+}
+
 export default all([
   takeLatest(actionTypes.ENROLLMENT_LIST_REQUEST, getList),
   takeLatest(actionTypes.ENROLLMENT_CREATE_REQUEST, createEnrollment),
+  takeLatest(actionTypes.ENROLLMENT_DELETE_REQUEST, deleteEnrollment),
 ]);

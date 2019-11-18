@@ -62,7 +62,11 @@ export default function Help() {
         <tbody>
           {help_orders.map(help_order => (
             <tr key={help_order.id}>
-              <td>{help_order.student.name}</td>
+              <td>
+                {help_order.student
+                  ? help_order.student.name
+                  : 'Usuário não existe mais'}
+              </td>
               <td>
                 <div>
                   <button

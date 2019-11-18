@@ -38,8 +38,19 @@ export function* createStudent({ payload }) {
   }
 }
 
+export function* deleteStudent({ payload }) {
+  try {
+    const { id } = payload;
+    yield call(api.delete, `students/${id}`);
+    toast.success(`Aluno ${id} deletado com sucesso`);
+  } catch (err) {
+    toast.error('Houve um erro tentando deletar este aluno');
+  }
+}
+
 export default all([
   takeLatest(actionTypes.STUDENT_LIST_REQUEST, getList),
   takeLatest(actionTypes.STUDENT_CREATE_REQUEST, createStudent),
   takeLatest(actionTypes.STUDENT_UPDATE_REQUEST, updateStudent),
+  takeLatest(actionTypes.STUDENT_DELETE_REQUEST, deleteStudent),
 ]);

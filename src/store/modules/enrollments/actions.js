@@ -56,3 +56,22 @@ export function enrollmentUpdateFailure() {
     type: actionTypes.ENROLLMENT_UPDATE_FAILURE,
   };
 }
+
+export function enrollmentDeleteRequest(id) {
+  return {
+    type: actionTypes.ENROLLMENT_DELETE_REQUEST,
+    payload: { id },
+  };
+}
+
+export function enrollmentDeleteSuccess() {
+  return {
+    type: actionTypes.ENROLLMENT_DELETE_SUCCESS,
+  };
+}
+
+export function enrollmentDeleteFailure() {
+  return {
+    type: actionTypes.ENROLLMENT_DELETE_FAILURE,
+  };
+}

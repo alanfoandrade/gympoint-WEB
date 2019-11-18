@@ -7,7 +7,11 @@ import { Container } from '~/components/Container/styles';
 import { Table } from '~/components/Table/styles';
 import { PageHeader } from '~/components/PageHeader/styles';
 
-import { planListRequest } from '~/store/modules/plans/actions';
+import {
+  planListRequest,
+  planDeleteRequest,
+} from '~/store/modules/plans/actions';
+import deleteAlert from '~/util/deleteAlert';
 
 export default function Plans() {
   const dispatch = useDispatch();
@@ -17,6 +21,14 @@ export default function Plans() {
     }
     loadPlans();
   }, [dispatch]);
+
+  function handleDelete(id) {
+    deleteAlert.delete().then(result => {
+      if (result.value) {
+        dispatch(planDeleteRequest(id));
+      }
+    });
+  }
 
   const plans = useSelector(state => state.plans.list);
   return (
@@ -52,7 +64,11 @@ export default function Plans() {
                 <td>
                   <div>
                     <Link to={`/edit-plan/${plan.id}`}>editar</Link>
-                    <button type="button" id="delete">
+                    <button
+                      type="button"
+                      id="delete"
+                      onClick={() => handleDelete(plan.id)}
+                    >
                       apagar
                     </button>
                   </div>

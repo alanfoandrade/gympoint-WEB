@@ -27,7 +27,6 @@ export function studentUpdateRequest(data) {
   };
 }
 
-/*
 export function studentUpdateSuccess() {
   return {
     type: actionTypes.STUDENT_UPDATE_SUCCESS,
@@ -39,7 +38,6 @@ export function studentUpdateFailure() {
     type: actionTypes.STUDENT_UPDATE_FAILURE,
   };
 }
-*/
 
 export function studentCreateRequest(data) {
   return {
@@ -48,7 +46,6 @@ export function studentCreateRequest(data) {
   };
 }
 
-/*
 export function studentCreateSuccess() {
   return {
     type: actionTypes.STUDENT_CREATE_SUCCESS,
@@ -60,4 +57,22 @@ export function studentCreateFailure() {
     type: actionTypes.STUDENT_CREATE_FAILURE,
   };
 }
-*/
+
+export function studentDeleteRequest(id) {
+  return {
+    type: actionTypes.STUDENT_DELETE_REQUEST,
+    payload: { id },
+  };
+}
+
+export function studenttDeleteSuccess() {
+  return {
+    type: actionTypes.STUDENT_DELETE_SUCCESS,
+  };
+}
+
+export function studentDeleteFailure() {
+  return {
+    type: actionTypes.STUDENT_DELETE_FAILURE,
+  };
+}

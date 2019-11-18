@@ -26,7 +26,6 @@ export default function students(state = INITIAL_STATE, action) {
         draft.loading = true;
         break;
       }
-      /*
       case actionTypes.STUDENT_UPDATE_SUCCESS: {
         draft.loading = false;
         break;
@@ -35,12 +34,10 @@ export default function students(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      */
       case actionTypes.STUDENT_CREATE_REQUEST: {
         draft.loading = true;
         break;
       }
-      /*
       case actionTypes.STUDENT_CREATE_SUCCESS: {
         draft.loading = false;
         break;
@@ -49,7 +46,18 @@ export default function students(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      */
+      case actionTypes.STUDENT_DELETE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case actionTypes.STUDENT_DELETE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.STUDENT_DELETE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

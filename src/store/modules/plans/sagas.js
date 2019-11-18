@@ -38,8 +38,19 @@ export function* updatePlan({ payload }) {
   }
 }
 
+export function* deletePlan({ payload }) {
+  try {
+    const { id } = payload;
+    yield call(api.delete, `plans/${id}`);
+    toast.success(`Plano ${id} deletado com sucesso`);
+  } catch (err) {
+    toast.error('Ocorreu um erro ao tentar deletar este plano');
+  }
+}
+
 export default all([
   takeLatest(actionTypes.PLAN_LIST_REQUEST, getList),
   takeLatest(actionTypes.PLAN_CREATE_REQUEST, createPlan),
   takeLatest(actionTypes.PLAN_UPDATE_REQUEST, updatePlan),
+  takeLatest(actionTypes.PLAN_DELETE_REQUEST, deletePlan),
 ]);

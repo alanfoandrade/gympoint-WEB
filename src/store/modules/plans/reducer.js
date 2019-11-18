@@ -46,6 +46,18 @@ export default function plans(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case actionTypes.PLAN_DELETE_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case actionTypes.PLAN_DELETE_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+      case actionTypes.PLAN_DELETE_FAILURE: {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

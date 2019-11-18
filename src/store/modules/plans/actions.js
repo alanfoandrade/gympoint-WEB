@@ -56,3 +56,22 @@ export function planUpdateFailure() {
     type: actionTypes.PLAN_UPDATE_FAILURE,
   };
 }
+
+export function planDeleteRequest(id) {
+  return {
+    type: actionTypes.PLAN_DELETE_REQUEST,
+    payload: { id },
+  };
+}
+
+export function planDeleteSuccess() {
+  return {
+    type: actionTypes.PLAN_DELETE_SUCCESS,
+  };
+}
+
+export function planDeleteFailure() {
+  return {
+    type: actionTypes.PLAN_DELETE_FAILURE,
+  };
+}
