@@ -56,6 +56,11 @@ export default function EnrollmentForm({ match }) {
   const defaultStudents = useSelector(state => state.students.list);
   const plans = useSelector(state => state.plans.list);
 
+  const enrollment = useSelector(state => state.enrollments.list).find(
+    enrollment => enrollment.id === Number(id)
+  );
+  console.log(enrollment);
+
   const total = useMemo(() => {
     if (plan) {
       return (plan.duration * plan.price).toFixed(2);
@@ -131,7 +136,7 @@ export default function EnrollmentForm({ match }) {
                   getOptionValue={option => option.id}
                   placeholder="Selecionar plano"
                   options={plans}
-                  defaultValue={plans[0]}
+                  defaultValue={enrollment ? enrollment.plan : plans[0]}
                   onChange={option => handlePlanChange(option)}
                 />
               </label>

@@ -18,7 +18,7 @@ export default function Help() {
       await dispatch(helpListRequest());
     }
     loadHelp();
-  }, []);
+  }, [dispatch]);
 
   const help_orders = useSelector(state => state.help.list);
   const [showModal, setShowModal] = useState(false);
