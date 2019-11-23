@@ -74,7 +74,7 @@ export default function PlanForm({ match }) {
       <FormContainer>
         <PageHeader
           title={id ? 'Edição de planos' : 'Cadastro de plano'}
-          action="SALVAR"
+          action="VOLTAR"
           createUri="/plans"
         />
         <Form id="planForm" schema={schema} onSubmit={handleSubmit}>
@@ -124,6 +124,7 @@ export default function PlanForm({ match }) {
               />
             </label>
           </div>
+          <button type="submit">ENVIAR</button>
         </Form>
       </FormContainer>
     </Container>

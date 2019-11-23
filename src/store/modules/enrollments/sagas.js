@@ -34,8 +34,24 @@ export function* deleteEnrollment({ payload }) {
   }
 }
 
+export function* updateEnrollment({ payload }) {
+  try {
+    const { data } = payload;
+    yield call(api.put, `enrollments/${data.id}`, {
+      student_id: data.student_id,
+      plan_id: data.plan_id,
+      start_date: data.start_date,
+    });
+
+    toast.success('Matrícula atualizada com sucesso');
+  } catch (err) {
+    toast.error('Ocorreu um erro atualizando esta matrícula');
+  }
+}
+
 export default all([
   takeLatest(actionTypes.ENROLLMENT_LIST_REQUEST, getList),
   takeLatest(actionTypes.ENROLLMENT_CREATE_REQUEST, createEnrollment),
   takeLatest(actionTypes.ENROLLMENT_DELETE_REQUEST, deleteEnrollment),
+  takeLatest(actionTypes.ENROLLMENT_UPDATE_REQUEST, updateEnrollment),
 ]);

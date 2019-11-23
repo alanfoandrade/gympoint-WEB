@@ -97,6 +97,7 @@ export default function StudentForm({ match }) {
               <Input type="number" step=".001" name="height" id="height" />
             </label>
           </div>
+          <button type="submit">ENVIAR</button>
         </Form>
       </FormContainer>
     </Container>

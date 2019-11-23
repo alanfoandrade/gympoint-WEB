@@ -17,6 +17,7 @@ import { studentListRequest } from '~/store/modules/students/actions';
 import { planListRequest } from '~/store/modules/plans/actions';
 import {
   enrollmentCreateRequest,
+  enrollmentUpdateRequest,
   enrollmentListRequest,
 } from '~/store/modules/enrollments/actions';
 import api from '~/services/api';
@@ -28,12 +29,18 @@ export default function EnrollmentForm({ match }) {
   const [plan, setPlan] = useState('');
   const [selectedStudent, setSelectedStudent] = useState({});
   const [startDate, setStartDate] = useState(new Date());
+  const [enrollmentById, setEnrollment] = useState('');
 
   async function loadStudents(value) {
     const res = await api.get(`students?name=${value}`);
     return new Promise(resolve => {
       resolve(res.data);
     });
+  }
+
+  async function setEnrollmentById(id) {
+    const res = await api.get(`enrollments/${id}`);
+    setEnrollment(res.data);
   }
 
   useEffect(() => {
@@ -43,23 +50,18 @@ export default function EnrollmentForm({ match }) {
       loadStudents();
       if (id) {
         await dispatch(enrollmentListRequest());
+        setEnrollmentById(id);
       }
     }
     loadData();
   }, [dispatch, id]);
 
-  /*    TODO: IF (ID) PUT ENROLLMENT.STUDENT.NAME ASYNCSELECTOR'S DEFAULT VALUE xDDDD
-    const enrollment = useSelector(state => state.enrollments.list).find(
-    enrollment => enrollment.id === Number(id)
-  );
-   */
-  const defaultStudents = useSelector(state => state.students.list);
+  // const defaultStudents = useSelector(state => state.students.list);
   const plans = useSelector(state => state.plans.list);
 
   const enrollment = useSelector(state => state.enrollments.list).find(
     enrollment => enrollment.id === Number(id)
   );
-
   const total = useMemo(() => {
     if (plan) {
       return (plan.duration * plan.price).toFixed(2);
@@ -93,6 +95,14 @@ export default function EnrollmentForm({ match }) {
       );
     } else {
       // console.log(selectedEnrollment);
+      dispatch(
+        enrollmentUpdateRequest({
+          id,
+          student_id: enrollmentById.student.id,
+          plan_id: plan.id,
+          start_date: startDate,
+        })
+      );
     }
   }
 
@@ -113,8 +123,8 @@ export default function EnrollmentForm({ match }) {
             <p>ALUNO</p>
             <AsyncSelect
               isDisabled={!!id}
-              defaultOptions={defaultStudents}
-              defaultValue={id ? 'x' : 'y'}
+              defaultOptions
+              value={enrollmentById.student}
               getOptionValue={option => option.id}
               getOptionLabel={option => option.name}
               cacheOptions

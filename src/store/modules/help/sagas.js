@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { helpListSuccess } from './actions';
 import * as actionTypes from '~/store/modules/actionTypes';
 import api from '~/services/api';
+import history from '~/services/history';
 
 export function* getList() {
   try {
@@ -20,6 +21,7 @@ export function* answerOrder({ payload }) {
       answer: data.answer,
     });
     toast.success('Pergunta respondida com sucesso!');
+    history.push('/help');
   } catch (err) {
     toast.error('Ocorreu um erro tentando responder à esta pergunta');
   }

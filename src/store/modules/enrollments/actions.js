@@ -38,10 +38,10 @@ export function enrollmentCreateFailure() {
   };
 }
 
-export function enrollmentUpdateRequest(enrollment) {
+export function enrollmentUpdateRequest(data) {
   return {
     type: actionTypes.ENROLLMENT_UPDATE_REQUEST,
-    payload: { enrollment },
+    payload: { data },
   };
 }
 
