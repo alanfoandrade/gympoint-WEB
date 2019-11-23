@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import { addMonths, format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import DatePicker from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
 // import * as Yup from 'yup';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
@@ -150,9 +150,10 @@ export default function EnrollmentForm({ match }) {
             <div>
               <label htmlFor="start_date">
                 <p>DATA DE INÍCIO</p>
-                <DatePicker
+                <ReactDatePicker
                   dateFormat="dd/MM/yyyy"
                   selected={startDate}
+                  locale={pt}
                   onChange={date => setStartDate(date)}
                 />
               </label>
