@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
@@ -9,10 +8,11 @@ import DatePicker from 'react-datepicker';
 // import * as Yup from 'yup';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
-
-import { Container } from '~/components/Container/styles';
-import { PageHeader } from '~/components/PageHeader/styles';
 import { FormContainer, GridContainer } from './styles';
+
+import Container from '~/components/Container';
+import PageHeader from '~/components/PageHeader';
+
 import { studentListRequest } from '~/store/modules/students/actions';
 import { planListRequest } from '~/store/modules/plans/actions';
 import {
@@ -59,7 +59,6 @@ export default function EnrollmentForm({ match }) {
   const enrollment = useSelector(state => state.enrollments.list).find(
     enrollment => enrollment.id === Number(id)
   );
-  console.log(enrollment);
 
   const total = useMemo(() => {
     if (plan) {
@@ -100,17 +99,14 @@ export default function EnrollmentForm({ match }) {
   return (
     <Container>
       <FormContainer>
-        <PageHeader>
-          <strong>
-            {id ? 'Edição de matrículas' : 'Criação de matrículas'}
-          </strong>
-          <aside>
-            <Link to="/enrollments">VOLTAR</Link>
-            <button type="submit" form="enrollmentForm" value="Submit">
-              SALVAR
-            </button>
-          </aside>
-        </PageHeader>
+        <PageHeader
+          title={id ? 'Edição de matrículas' : 'Criação de matrículas'}
+          action="VOLTAR"
+          createUri="/enrollments"
+        />
+        <button type="submit" form="enrollmentForm" value="Submit">
+          SALVAR
+        </button>
 
         <Form id="enrollmentForm" onSubmit={handleSubmit}>
           <label htmlFor="title">

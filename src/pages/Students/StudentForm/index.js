@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { Container } from '~/components/Container/styles';
-import { PageHeader } from '~/components/PageHeader/styles';
+import Container from '~/components/Container';
+import PageHeader from '~/components/PageHeader';
 import { FormContainer } from './styles';
 
 import {
@@ -56,15 +55,11 @@ export default function StudentForm({ match }) {
   return (
     <Container>
       <FormContainer>
-        <PageHeader>
-          <strong>{id ? 'Edição de aluno' : 'Cadastro de aluno'}</strong>
-          <aside>
-            <Link to="/students">VOLTAR</Link>
-            <button type="submit" form="StudentForm" value="Submit">
-              SALVAR
-            </button>
-          </aside>
-        </PageHeader>
+        <PageHeader
+          title={id ? 'Edição de alunos' : 'Cadastro de aluno'}
+          action="VOLTAR"
+          createUri="/students"
+        />
         <Form
           schema={schema}
           initialData={student}

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MdAdd } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table } from './styles';
-import { PageHeader } from '~/components/PageHeader/styles';
-import { Container } from '~/components/Container/styles';
+import PageHeader from '~/components/PageHeader';
+import Container from '~/components/Container';
 
 import {
   enrollmentListRequest,
@@ -34,15 +33,11 @@ export default function Enrollments() {
 
   return (
     <>
-      <PageHeader>
-        <strong>Gerenciamento de matrículas</strong>
-        <aside>
-          <Link to="/create-enrollment">
-            <MdAdd size={20} />
-            CADASTRAR
-          </Link>
-        </aside>
-      </PageHeader>
+      <PageHeader
+        title="Gerenciamento de matrículas"
+        action="CADASTRAR"
+        createUri="/create-enrollment"
+      />
       <Container>
         <Table>
           <thead>

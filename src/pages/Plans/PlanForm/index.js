@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { Container } from '~/components/Container/styles';
-import { PageHeader } from '~/components/PageHeader/styles';
+import Container from '~/components/Container';
+import PageHeader from '~/components/PageHeader';
 import { FormContainer } from './styles';
 
 import {
@@ -73,15 +72,11 @@ export default function PlanForm({ match }) {
   return (
     <Container>
       <FormContainer>
-        <PageHeader>
-          <strong>{id ? 'Edição de planos' : 'Cadastro de plano'}</strong>
-          <aside>
-            <Link to="/plans">VOLTAR</Link>
-            <button type="submit" form="planForm" value="Submit">
-              SALVAR
-            </button>
-          </aside>
-        </PageHeader>
+        <PageHeader
+          title={id ? 'Edição de planos' : 'Cadastro de plano'}
+          action="SALVAR"
+          createUri="/plans"
+        />
         <Form id="planForm" schema={schema} onSubmit={handleSubmit}>
           <label htmlFor="title">
             <p>TÍTULO DO PLANO</p>

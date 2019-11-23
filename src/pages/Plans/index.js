@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdAdd } from 'react-icons/md';
 
-import { Container } from '~/components/Container/styles';
+import Container from '~/components/Container';
 import { Table } from '~/components/Table/styles';
-import { PageHeader } from '~/components/PageHeader/styles';
+import PageHeader from '~/components/PageHeader';
 
 import {
   planListRequest,
@@ -33,15 +32,11 @@ export default function Plans() {
   const plans = useSelector(state => state.plans.list);
   return (
     <>
-      <PageHeader>
-        <strong>Gerenciamento de planos</strong>
-        <aside>
-          <Link to="/create-plan">
-            <MdAdd size={20} />
-            CADASTRAR
-          </Link>
-        </aside>
-      </PageHeader>
+      <PageHeader
+        title="Gerenciamento de planos"
+        action="CADASTRAR"
+        createUri="/create-plan"
+      />
       <Container>
         <Table>
           <thead>

@@ -20,6 +20,19 @@ export const FormContainer = styled.div`
       width: 100%;
     }
   }
+
+  button {
+    background: #de3b3b;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 16px;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+  }
 `;
 
 export const GridContainer = styled.div`

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdAdd } from 'react-icons/md';
-
-import { Container } from '~/components/Container/styles';
 import { Table } from '~/components/Table/styles';
-import { PageHeader } from '~/components/PageHeader/styles';
+
+import Container from '~/components/Container';
+import PageHeader from '~/components/PageHeader';
 
 import {
   studentListRequest,
@@ -33,15 +32,11 @@ export default function Students() {
 
   return (
     <>
-      <PageHeader>
-        <strong>Gerenciamento de alunos</strong>
-        <aside>
-          <Link to="/create-student">
-            <MdAdd size={20} />
-            CADASTRAR
-          </Link>
-        </aside>
-      </PageHeader>
+      <PageHeader
+        title="Gerenciamento de alunos"
+        action="CADASTRAR"
+        createUri="/create-student"
+      />
       <Container>
         <Table>
           <thead>
